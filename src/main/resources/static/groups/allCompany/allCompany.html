@@ -1,0 +1,36 @@
+<div class="container" ng-init="getPersonsByOrganization('ou=bfa users,dc=bfad,dc=ru')">
+    <h1>Справочник группы компаний БФА</h1>
+    <div class="dropdown">
+        <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Выберете компанию:
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#!/">Все компании</a>
+            <a class="dropdown-item" href="#!/groups/dev">БФА-Девелопмент</a>
+            <a class="dropdown-item" href="#!/groups/invest">БФА-Инвестиции</a>
+            <a class="dropdown-item" href="#!/groups/dudergof">Дудергофский проект</a>
+        </div>
+    </div>
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">Имя</th>
+                <th scope="col">Почта</th>
+                <th scope="col">Добавить в рассылку</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="p in PersonsList">
+                <th scope="row">{{p.fullName}}</th>
+                <td>{{p.email}}</td>
+                <td>
+                    <form ng-submit="testButton(p.email)">
+                        <button class="btn btn-info" type="submit">Тестовая кнопка</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

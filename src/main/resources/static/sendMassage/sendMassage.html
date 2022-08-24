@@ -1,0 +1,210 @@
+<!--<html ng-app="myApp" ng-controller="sendMassageController">-->
+<div class="container" ng-init="init()" >
+
+    <h1>РАССЫЛКА</h1>
+
+    <form ng-submit="sendMessage()">
+        <div class="form-row">
+            <div class="form-group col-md-6" >
+                <label for="from">Отправитель</label>
+                <select class="custom-select" id="from" ng-model="Message.from">
+                    <option value="{{fr.email}}" ng-repeat="fr in Fromlist" >{{fr.email}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="subject">Тема</label>
+                <input type="text" class="form-control" id="subject" placeholder="Введите тему рассылки" ng-model="Message.subject">
+            </div>
+            <div class="form-group col-md-6" >
+                <label for="to">Лист получателей</label>
+                <select class="custom-select" id="to" ng-model="Message.mailslistId">
+                    <option value="{{ml.id}}" ng-repeat="ml in Mailslist" >{{ml.name}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Текст</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" ng-model="Message.text" placeholder="Введите текс рассылки"></textarea>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="0" ng-model="Message.deliveryMethod" checked>
+            <label class="form-check-label" for="inlineRadio1">Общая отправка</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="1" ng-model="Message.deliveryMethod">
+            <label class="form-check-label" for="inlineRadio2">Поименная отправка</label>
+        </div>
+
+<!--        <br>-->
+<!--        <div class="custom-file">-->
+<!--            <input type="file" class="custom-file-input" id="inputGroupFile02">-->
+<!--            <label class="custom-file-label" for="inputGroupFile02">Choose file</label>-->
+<!--        </div>-->
+<!--        <br>-->
+        <div class="sendButton">
+            <button type="submit" class="btn btn-primary mb-2">Разослать</button>
+        </div>
+
+    </form>
+
+
+    <!--    <div ng-controller = "myCtrl" ng-model="myApp">-->
+<!--    <div>-->
+<!--        <input type = "file" file-model = "myFile"/>-->
+<!--        <button ng-click = "uploadFile()">upload me</button>-->
+<!--    </div>-->
+
+
+    <!--    <div class="panel panel-default">-->
+    <!--        <div class="panel-body">-->
+    <!--            <form>-->
+    <!--                <div class="form-group">-->
+    <!--                    <label for="myFileField">Select a file: </label>-->
+    <!--                    <input type="file" demo-file-model="myFile"  class="form-control" id ="myFileField"/>-->
+    <!--                </div>-->
+    <!--                <button ng-click="uploadFile()" class = "btn btn-primary">Upload File</button>-->
+    <!--            </form>-->
+    <!--        </div>-->
+    <!--    </div>-->
+
+    <!--    <script>-->
+    <!--        var myApp = angular.module('myApp', []);-->
+
+    <!--        myApp.directive('fileModel', ['$parse', function ($parse) {-->
+    <!--            return {-->
+    <!--                restrict: 'A',-->
+    <!--                link: function(scope, element, attrs) {-->
+    <!--                    var model = $parse(attrs.fileModel);-->
+    <!--                    var modelSetter = model.assign;-->
+
+    <!--                    element.bind('change', function() {-->
+    <!--                        scope.$apply(function() {-->
+    <!--                            modelSetter(scope, element[0].files[0]);-->
+    <!--                        });-->
+    <!--                    });-->
+    <!--                }-->
+    <!--            };-->
+    <!--        }]);-->
+    <!--        myApp.service('fileUpload', ['$http', function ($http) {-->
+    <!--            this.uploadFileToUrl = function(file, uploadUrl) {-->
+    <!--                var fd = new FormData();-->
+    <!--                fd.append('file', file);-->
+
+    <!--                $http.post(uploadUrl, fd, {-->
+    <!--                    transformRequest: angular.identity,-->
+    <!--                    headers: {'Content-Type': undefined}-->
+    <!--                })-->
+    <!--                    .success(function() {-->
+    <!--                    })-->
+    <!--                    .error(function() {-->
+    <!--                    });-->
+    <!--            }-->
+    <!--        }]);-->
+    <!--        myApp.controller('myCtrl', ['$scope', 'fileUpload', function($scope, fileUpload) {-->
+    <!--            $scope.uploadFile = function() {-->
+
+    <!--                var file = $scope.myFile;-->
+    <!--                console.log('file is ' );-->
+    <!--                console.dir(file);-->
+    <!--                var uploadUrl = "http://10.160.3.255:7980/handbook/ldap/file";-->
+    <!--                fileUpload.uploadFileToUrl(file, uploadUrl);-->
+    <!--            };-->
+
+
+
+    <!--        }]);-->
+    <!--    </script>-->
+
+</div>
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Spring Boot File Upload with AngularJS</title>-->
+<!--    <meta charset="utf-8" />-->
+<!--    &lt;!&ndash; Check other AngularJS version at: &ndash;&gt;-->
+<!--    &lt;!&ndash; https://code.angularjs.org/1.6.9/docs/misc/downloading &ndash;&gt;-->
+<!--    <script-->
+<!--            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>-->
+<!--    <script src="/js/MainApp.js"></script>-->
+<!--    <script src="/js/UploadFileCtrl.js"></script>-->
+<!--    <script src="/js/GetFilesCtrl.js"></script>-->
+<!--</head>-->
+<!--<body ng-app="MainApp">-->
+<!--<h2>Spring Boot File Upload with AngularJS</h2>-->
+
+<!--<form ng-submit="sendMessage()">&ndash;&gt;-->
+<!--            <div class="form-row">-->
+<!--                <div class="form-group col-md-6">-->
+<!--                    <label for="subject">Тема</label>-->
+<!--                    <input type="text" class="form-control" id="subject" placeholder="Введите тему рассылки" ng-model="Message.subject">-->
+<!--                </div>-->
+<!--                <div class="form-group col-md-6" >-->
+<!--                    <label for="to">Лист получателей</label>-->
+<!--                    <select class="custom-select" id="to" ng-model="Message.mailslistId">-->
+<!--                        <option value="{{ml.id}}" ng-repeat="ml in Mailslist" >{{ml.name}}</option>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="form-group">-->
+<!--                <label for="exampleFormControlTextarea1">Текст</label>-->
+<!--                <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" ng-model="Message.text" placeholder="Введите текс рассылки"></textarea>-->
+<!--            </div>-->
+
+<!--            <div class="form-check form-check-inline">-->
+<!--                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="0" ng-model="Message.deliveryMethod" checked>-->
+<!--                <label class="form-check-label" for="inlineRadio1">Общая отправка</label>-->
+<!--            </div>-->
+<!--            <div class="form-check form-check-inline">-->
+<!--                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="1" ng-model="Message.deliveryMethod">-->
+<!--                <label class="form-check-label" for="inlineRadio2">Поименная отправка</label>-->
+<!--            </div>-->
+
+<!--            <br>-->
+<!--            <div class="custom-file">-->
+<!--                <input type="file" class="custom-file-input" id="inputGroupFile02">-->
+<!--                <label class="custom-file-label" for="inputGroupFile02">Choose file</label>-->
+<!--            </div>-->
+<!--            <br>-->
+<!--            <div class="sendButton">-->
+<!--                <button type="submit" class="btn btn-primary mb-2">Разослать</button>-->
+<!--            </div>-->
+
+<!--</form>-->
+
+<!--    <div ng-controller="UploadFileController">-->
+<!--        <form>-->
+<!--            Description: <br/>-->
+<!--            <input type="text" name="description" ng-model="myForm.description" style="width:350px;"/>-->
+<!--            <br/><br/>-->
+<!--            File to upload (1): <input type="file" file-model="myForm.files[0]"/><br />-->
+<!--            File to upload (2): <input type="file" file-model="myForm.files[1]"/><br />-->
+<!--            File to upload (3): <input type="file" file-model="myForm.files[2]"/><br />-->
+<!--            File to upload (4): <input type="file" file-model="myForm.files[3]"/><br />-->
+<!--            File to upload (5): <input type="file" file-model="myForm.files[4]"/><br />-->
+<!--            <button type="button" ng-click="doUploadFile()">Upload</button>-->
+<!--        </form>-->
+<!--        <h2>Upload Results:</h2>-->
+<!--        <div style="border:1px solid #cccccc;padding: 5px;">-->
+<!--            <span ng-bind="uploadResult"></span>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--     Get Files-->
+<!--<hr>-->
+<!--<div ng-controller="GetFilesController">-->
+<!--    <button type="button" ng-click="getAllFiles()">Get All Files</button>-->
+<!--    <ul>-->
+<!--        <li ng-repeat="file in allFiles">-->
+<!--            <a href='/rest/files/{{file}}'>{{file}}</a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+<!--</html>-->

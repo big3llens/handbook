@@ -1,0 +1,60 @@
+<div class="container" ng-init="getPersonsByOrganization('ou=Зенит-Строй-Инвест,ou=externalcompanies,dc=bfad,dc=ru')">
+    <h1>Справочник группы компаний БФА</h1>
+    <div class="row justify-content-start" style="">
+        <div class="col-md-auto" style="">
+            <div class="dropdown">
+                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Выберете компанию:
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <!--          <a class="dropdown-item" href="#!/addPersonToMailList">Все компании</a>-->
+                    <a class="dropdown-item" href="#!/groups/dev">БФА-Девелопмент</a>
+                    <a class="dropdown-item" href="#!/groups/invest">БФА-Инвестиции</a>
+                    <a class="dropdown-item" href="#!/groups/dudergof">Дудергофский проект</a>
+                    <a class="dropdown-item" href="#!/groups/service">БФА-Сервис</a>
+                    <a class="dropdown-item" href="#!/groups/cis">Центр-инвест-Строй</a>
+                    <a class="dropdown-item" href="#!/groups/flame">Пламя</a>
+                    <a class="dropdown-item" href="#!/groups/mk">МК-БФА</a>
+                    <a class="dropdown-item" href="#!/groups/monolit">БФА-Монолит</a>
+                    <a class="dropdown-item" href="#!/groups/nasledie">Невское наследие</a>
+                    <a class="dropdown-item" href="#!/groups/psb">ПСБ Жилстрой</a>
+                    <a class="dropdown-item" href="#!/groups/szic">Северо-Западная индустриальная компания</a>
+                    <a class="dropdown-item" href="#!/groups/zenit">Зенит-инвест-строй</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-auto">
+            <div class="dropdown">
+                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Выберете лист рассылки:
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+                    <a class="dropdown-item" ng-repeat="m in Mailslist" ng-click="selectMailslist(m.name, m.id, 'ou=Зенит-Строй-Инвест,ou=externalcompanies,dc=bfad,dc=ru')">{{m.name}}</a>
+                </div>
+            </div>
+        </div>
+        <span>Выбранный лист: {{selectedMailslist}}</span>
+    </div>
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">Имя</th>
+                <th scope="col">Почта</th>
+                <th scope="col">Добавить в рассылку</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="p in PersonsList">
+                <th scope="row">{{p.fullName}}</th>
+                <td>{{p.email}}</td>
+                <td>
+                    <form ng-submit="addToMailsList(selectedMailslistId, p.email, p.fullName, 'ou=Зенит-Строй-Инвест,ou=externalcompanies,dc=bfad,dc=ru')">
+                        <button class="btn btn-info" type="submit">Добавить в лист: {{selectedMailslist}}</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

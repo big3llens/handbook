@@ -1,0 +1,74 @@
+<div class="container">
+    <div ng-show="showMailslistt == 0">
+<!--        <div >-->
+        <H2>Создать почтовый лист</H2>
+        <form ng-submit="submitSaveEmployee()">
+            <div class="form-row align-items-center">
+                <div class="form-group col-md-6">
+                    <label class="sr-only" for="inlineFormInput">Название листа</label>
+                    <input type="text" class="form-control mb-2" id="inlineFormInput" ng-model="newMaillist.name" placeholder="Введите название листа, который хотите создать">
+                </div>
+                <div class="form-group col-md-6">
+                    <button type="submit" class="btn btn-primary mb-2">Создать</button>
+                </div>
+            </div>
+        </form>
+
+        <div ng-init="getMailslists()">
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">Название листа рассылки</th>
+                    <!--            <th scope="col">Добавить в рассылку</th>-->
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="m in MailsLists" ng-repeat="n in numberOfList">
+                    <!--                <th scope="row">{{n}}</th>-->
+                    <td>{{m.name}}</td>
+                    <td>
+                        <form ng-submit="showMailslist(m.id, m.name)">
+                            <button class="btn btn-info" type="submit">Просмотреть содержимое листа</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div ng-show="showMailslistt == 1">
+        <form ng-submit="mainPage()">
+            <button class="btn btn-info" type="submit">Назад</button>
+        </form>
+
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td>{{Emails}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <table class="table table-bordered">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">Имя</th>
+                <th scope="col">Почта</th>
+<!--                <th scope="col">Добавить в рассылку</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="p in PersonsList">
+                <th scope="row">{{p.fullName}}</th>
+                <td>{{p.email}}</td>
+<!--                <td>-->
+<!--                    <form ng-submit="addToMailsList(selectedMailslistId, p.email, p.fullName, 'ou=bfa users,dc=bfad,dc=ru')">-->
+<!--                        <button class="btn btn-info" type="submit">Добавить в лист: {{selectedMailslist}}</button>-->
+<!--                    </form>-->
+<!--                </td>-->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
